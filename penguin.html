@@ -1,0 +1,138 @@
+
+<!-- saved from url=(0053)http://www.pages.drexel.edu/~nhn29/cs164/hw6/pet.html -->
+<html hola_ext_inject="ready"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+        <title>Penguin - The Pomerian Puppy</title>
+        <script type="text/javascript"> <!--
+    var state; 
+    var count = 0;
+    var num1;
+    var num2;
+
+    function Initialize()
+{    state = 'happy'
+        Display(state);
+       }
+    function Display(x)
+{
+
+    if (x == 'happy')
+    {count = count+1
+     num1 = (count % 5);
+     num2 = (count % 11);
+        document.picture.src = 'penguin_images/happy.jpeg';
+     document.getElementById('soundID').value = 'Wuau.Wuau.';
+     document.getElementById('actionID').value = 'Waggle Tail';
+     Simulate();
+    }
+    else if (x == 'angry')
+    {document.picture.src = 'penguin_images/angry.jpeg';
+      document.getElementById('soundID').value = 'Grrr..';
+     document.getElementById('actionID').value = 'Bite';
+    }
+     else if (x == 'sad')
+    {document.picture.src = 'penguin_images/sad.jpeg';
+      document.getElementById('soundID').value = 'Woa..Woa...';
+     document.getElementById('actionID').value = 'Sit in corner';
+    }
+     else if (x == 'sleepy')
+    {document.picture.src = 'penguin_images/sleepy.jpeg';
+      document.getElementById('soundID').value = 'Zzz..Zzz..';
+     document.getElementById('actionID').value = 'Lie down';
+    }
+     else if (x == 'hungry')
+    {document.picture.src = 'penguin_images/hungry.jpg';
+      document.getElementById('soundID').value = 'Anf..Anf';
+     document.getElementById('actionID').value = 'Running around';
+    }
+}
+function Simulate()
+{  if ((num1 == 0)  && (state == 'happy')){
+   setTimeout(function(){state = 'hungry'
+           Display(state)}, 2000)   }
+   else if ((num2 == 0) && (state == 'happy'))
+   {setTimeout(function(){state = 'sleepy'
+           Display(state)}, 2000)}
+  else if ( state == 'happy')
+{var n = Math.random();
+   if (state == 'happy' && n < 0.9)
+   {
+    setTimeout(function(){Simulate()}, 1500);
+   }
+   else if (state =='happy' && n >= 0.9)
+   {state = 'sad'
+    Display(state)
+   }
+  }}
+   
+    function Action()
+  { var q= document.getElementById('ownerID');
+    var choice = q.selectedIndex;
+    var d = q.options[choice].text;
+ if (state != 'happy')
+ {
+     if (d == 'Feed')
+    { if (state == 'hungry')
+        { state = 'happy'
+         }
+    
+    }
+    else if (d == 'Pet')
+    { if (state == 'angry' || state == 'sad')
+        {state = 'happy'}
+    
+    }
+    else if (d == 'Pock')
+    { if (state == 'sleepy' || state == 'sad')
+        {state = 'angry'}
+    
+    }
+    Display(state);}
+   
+  }
+// -->    </script>
+    <script type="text/javascript">
+    <!--
+    function teach()
+{    var pattern = /\bw\w+\b/
+    var word = document.getElementById('wordID').value
+    var test = pattern.test(word)
+    if (test == true)
+    {
+    document.getElementById('outputID').value = ("Wuau wuau" + "\"" + word  +
+        "\"" + "wuau wao." + " (I'm saying " +   "\"" + word  +
+        "\"" + " right now.)")}
+
+    else
+  {
+    document.getElementById('outputID').value = ("Woowy, Woa wo woa... (Sorry, I don't "
+        + "know how to say that.)")
+    }
+}
+    --></script>
+    <style type="text/css"></style></head>
+    <body align="center" bgcolor="99BFFF" text="#000000" onload="Initialize()" hola-ext-player="1">
+    <p> Penguin - The Pomerania Puppy
+    <br>
+    </p><p><img name="picture" height="300" width="400" src="./Penguin - The Pomerian Puppy_files/sad.jpeg">
+    <br>
+    </p><form>
+        Penguin's sound: <input type="text" name="sound" id="soundID"><br>
+        Penguin's action: <input type="text" name="action" id="actionID"><br>
+        Owner's action: <select name="owner" id="ownerID">
+        <option value="a">Feed</option>
+        <option value="b">Pet</option>
+        <option value="c">Pock</option>
+        </select>
+        <input type="button" value="Do It!" name="button1" id="button1ID" onclick="Action()"><br>
+        <p>Teach Penguin how to talk by inserting a word:<br>
+        <input type="text" name="word" id="wordID">
+        <input type="button" value="Teach!" name="button2" id="button2ID" onclick="teach()"><br>
+
+        Penguin says: 
+        <textarea type="text" name="output" id="outputID" cols="50" rows="2"></textarea>
+    </p></form>
+    
+
+
+
+</body></html>
